@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+{% load static %}
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>
+        {% block title %}
+            STUDENT PORTAL APP
+        {% endblock %}
+    </title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    
+</head>
+<body class="home-body">
+    <nav>
+       <a href="/" style="text-decoration: none;">
+            <span role="img" aria-label="Home" title="Home">🏠</span>
+        </a> | 
+        <a href="{% url 'register' %}" style="text-decoration: none;">
+            <span role="img" aria-label="register" title = "register">®️</span>
+        </a> | 
+         
+        <a href="/login" style="text-decoration: none;">
+            <span role="img" aria-label="login" title = "login">🚪🏃‍♂️</span>
+        </a> 
+         
+    </nav>
+    
+</body>
+</html>

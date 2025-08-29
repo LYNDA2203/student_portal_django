@@ -1,0 +1,119 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f6f9;
+    
+}
+
+body.home-body {
+    
+    font-family: Arial, sans-serif;
+    background: url("/static/image/students_imag.png") no-repeat center center fixed; 
+    background-size: cover;   /* make image cover full screen */
+}
+
+nav {
+    padding: 1rem;
+    background-color: #44B78B;
+    color: white;
+    font-size: 2.5rem;
+}
+
+
+form {
+    max-width: 400px;
+    margin: 50px auto;
+    padding: 20px;
+    background: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+
+form h2 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+form label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+form input {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+form button {
+    width: 100%;
+    padding: 10px;
+    background: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+form button:hover {
+    background: #0056b3;
+}
+
+p.error {
+    color: red;
+    font-size: 14px;
+}
+
+/* Centered box */
+.container {
+    width: 400px;
+    margin: 150px auto;
+    padding: 30px;
+    background: rgba(255, 255, 255, 0.9);  /* white box with transparency */
+    text-align: center;
+    border-radius: 12px;
+    box-shadow: 0px 4px 15px rgba(0,0,0,0.3);
+}
+
+/* Heading */
+.container h1 {
+    margin-bottom: 20px;
+    color: #0077b6;
+}
+
+/* Buttons */
+.container a {
+    display: inline-block;
+    margin: 10px;
+    padding: 12px 25px;
+    text-decoration: none;
+    font-weight: bold;
+    border-radius: 6px;
+    transition: 0.3s;
+}
+
+/* Register button */
+.container a.register {
+    background: #0077b6;
+    color: white;
+}
+.container a.register:hover {
+    background: #005f86;
+}
+
+/* Login button */
+.container a.login {
+    background: #f4a261;
+    color: white;
+}
+.container a.login:hover {
+    background: #e76f51;
+}

@@ -1,0 +1,19 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    HOME
+{% endblock %}
+ 
+{% block body_class %}Home-body{% endblock %}
+  
+{% block content %}
+<nav>
+  <div class="container">
+    <h1>Welcome to Students Portal</h1>
+    <p>New here?</p>
+    <a href="{% url 'register' %}" class="register">Register</a>
+    <p>Already registered?</p>
+    <a href="{% url 'login' %}" class="login">Login</a>
+  </div>
+</nav>
+{% endblock %}
