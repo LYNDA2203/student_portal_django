@@ -14,20 +14,25 @@
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
     
 </head>
-<body class="home-body">
+<body background="static/image/students_image.png">
     <nav>
        <a href="/" style="text-decoration: none;">
             <span role="img" aria-label="Home" title="Home">🏠</span>
         </a> | 
-        <a href="{% url 'register' %}" style="text-decoration: none;">
-            <span role="img" aria-label="register" title = "register">®️</span>
-        </a> | 
-         
-        <a href="/login" style="text-decoration: none;">
+        {% if user.is_authenticated %}
+         <a href="/login" style="text-decoration: none;">
             <span role="img" aria-label="login" title = "login">🚪🏃‍♂️</span>
         </a> 
-         
+       
+        {% endif %} 
+       
+         <a href="{% url 'register' %}" style="text-decoration: none;">
+            <span role="img" aria-label="register" title = "register">®️</span>
+        </a>  
     </nav>
-    
+    {% block content %}
+
+
+    {% endblock %}
 </body>
 </html>

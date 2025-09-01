@@ -5,8 +5,7 @@
 {% endblock  %}
 
 {% block content %}
-    <nav>
-        <form method="post" action="{% url 'login' %}">
+       <form method="post" action="{% url 'login' %}">
             {% csrf_token %}
             <h2>Login</h2>
 
@@ -16,6 +15,8 @@
                 <p class="error">{{ error }}</p>
             {% endfor %}
 
+            <label for=""></label>
+            
             <label for="{{ form.password.id_for_label }}">Password</label>
                 {{ form.password }}
                 {% for error in form.password.errors %}
@@ -29,6 +30,5 @@
             {% endif %}
 
             <button type="submit">Login</button>
-        </form>
-  </nav>
+        </form> 
 {% endblock %}

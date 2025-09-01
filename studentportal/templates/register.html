@@ -7,11 +7,11 @@
 {% block content %}
   <div class="container">
     <h1>Register a New User</h1>
-    <form class="form-width-validation" action={% url 'users:register' %} method= "post">
+    <form class="form-width-validation" action={% url 'register' %} method= "post">
         {% csrf_token %}
         {{ form  }}
     <button class = "form-submit">Submit</button>
 </form> 
-  </div>
+  </div> 
 
-{% endblock %}
+{% endblock %} 

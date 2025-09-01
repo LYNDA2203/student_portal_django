@@ -16,7 +16,7 @@ def register_view(request):
             user = authenticate(username=user.username, password=raw_password)
             if user:
                 login(request, user)
-                return redirect('home')
+                return redirect('login')
     else:
         form = UserCreationForm()
     
