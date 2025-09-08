@@ -34,6 +34,11 @@ form {
     box-shadow: 0 2px 6px rgba(0,0,0,0.1);
 }
 
+.form-group {
+    margin-bottom: 15px; /* space between groups */
+}
+
+
 form h2 {
     text-align: center;
     margin-bottom: 20px;
@@ -116,4 +121,59 @@ p.error {
 }
 .container a.login:hover {
     background: #e76f51;
+}
+
+.navbar {
+    background-color: #44B78B;   /* green bar */
+    padding: 10px;
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+/* Style for all nav buttons */
+.nav-btn {
+    color: #44B78B;
+    padding: 6px 14px;
+    border-radius: 6px;
+    font-weight: bold;
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+    transition: 0.3s ease;
+    font-size: 0.8em;  
+    display: inline-block;
+
+}
+
+/* Hover effect */
+.nav-btn:hover {
+    background: #2f728c;
+    color: white;
+}
+
+/* Special style for Logout */
+.nav-left {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  gap: 1px;      
+}
+
+.logout-form,
+.logout-btn {
+  background: transparent;
+  border: none;
+  outline: none;
+  padding: 0;
+  margin: 0;
+  width: auto;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.nav-btn.logout-btn:hover {
+    background: #cc5656;
 }

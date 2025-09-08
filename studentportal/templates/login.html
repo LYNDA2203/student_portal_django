@@ -9,24 +9,26 @@
             {% csrf_token %}
             <h2>Login</h2>
 
-            <label for="{{ form.username.id_for_label }}">Username</label>
-                {{ form.username }}
-                {% for error in form.username.errors %}
-                <p class="error">{{ error }}</p>
-            {% endfor %}
-
-            <label for=""></label>
+            <div class="form-group">
+                <label for="{{ form.username.id_for_label }}">Username</label>
+                    {{ form.username }}
+                    {% for error in form.username.errors %}
+                        <p class="error">{{ error }}</p>
+                    {% endfor %}
+            </div>
             
-            <label for="{{ form.password.id_for_label }}">Password</label>
+            <div class="form-group">
+                <label for="{{ form.password.id_for_label }}">Password</label>
                 {{ form.password }}
                 {% for error in form.password.errors %}
-                <p class="error">{{ error }}</p>
+                    <p class="error">{{ error }}</p>
                 {% endfor %}
-
+            </div>
+            
             {% if form.non_field_errors %}
-            {% for error in form.non_field_errors %}
-                <p class="error">{{ error }}</p>
-            {% endfor %}
+                {% for error in form.non_field_errors %}
+                    <p class="error">{{ error }}</p>
+                {% endfor %}
             {% endif %}
 
             <button type="submit">Login</button>
