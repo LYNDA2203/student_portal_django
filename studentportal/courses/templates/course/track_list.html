@@ -1,0 +1,21 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    COURSES AVAILABLE
+{% endblock  %}
+
+{% block content %}
+    <h1>Choose Your Path</h1>
+    {% if user.is_authenticated %}
+        <ul>
+            {% for track in tracks %}
+            <li><a href="{% url 'courses:track_detail' track.pk %}">{{ track.title }}</a></li>
+            {% empty %}
+            <li>No tracks available.</li>
+            {% endfor %}
+        </ul>
+
+        {% else %}
+            <p>Please log in to see the available tracks.</p>
+    {% endif %}
+{% endblock %}

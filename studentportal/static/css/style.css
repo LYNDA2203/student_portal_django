@@ -177,3 +177,28 @@ p.error {
 .nav-btn.logout-btn:hover {
     background: #cc5656;
 }
+
+.course-selection {
+  text-align: center;
+  padding: 2rem;
+}
+
+.cards {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.card {
+  flex: 1 1 200px;
+  padding: 1.5rem;
+  border: 2px solid #ddd;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.card:hover {
+  border-color: #007bff;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}

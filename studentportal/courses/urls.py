@@ -1,9 +1,11 @@
 from django.contrib import admin
 from django.urls import path
-from . import views
+from .views import TrackListView, TrackDetailView
+from django.contrib.auth.decorators import login_required
 
 app_name = 'courses'
 
 urlpatterns = [
-    path('course/',views.course,name='course'),
+    path('tracks/', login_required(TrackListView.as_view()), name='track_list'),
+    path('tracks/<int:pk>/', TrackDetailView.as_view(), name='track_detail'),
 ]
