@@ -5,11 +5,11 @@
 {% endblock  %}
 
 {% block content %}
-    <h1>Choose Your Path</h1>
+    <h1 style="text-align: center;">Choose Your Path</h1>
     {% if user.is_authenticated %}
         <ul>
             {% for track in tracks %}
-            <li><a href="{% url 'courses:track_detail' track.pk %}">{{ track.title }}</a></li>
+            <li><a href="{% url 'courses:track_detail' track.pk %}" class= "card" class= "course">{{ track.title }}</a></li>
             {% empty %}
             <li>No tracks available.</li>
             {% endfor %}

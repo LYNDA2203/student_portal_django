@@ -186,19 +186,24 @@ p.error {
 .cards {
   display: flex;
   justify-content: center;
-  gap: 1rem;
+  align-items: flex-start;
+  gap: 3rem;
 }
 
 .card {
-  flex: 1 1 200px;
+  display: flex;
+  justify-content: center; /* or space-around / space-between */
+  gap: 2rem;
+  flex-wrap: wrap;
+  flex: 0 1 250px;
   padding: 1.5rem;
-  border: 2px solid #ddd;
-  border-radius: 8px;
+  text-align: center;
+  border: none;
   cursor: pointer;
   transition: border-color 0.3s, box-shadow 0.3s;
 }
 
 .card:hover {
-  border-color: #007bff;
+  border-color: #5100ff;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }

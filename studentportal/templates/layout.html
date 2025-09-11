@@ -25,7 +25,7 @@
     <div class="nav-right">
 
         {% if user.is_authenticated %}
-        <a href="{% url 'courses:track_list' %}" class="nav-btn" style="text-decoration: none;">
+        <a href="{% url 'courses:track_list' %}" class="nav-btn"  style="text-decoration: none;">
             {% csrf_token %}
             <span role="img" aria-label="track-list" title="track-list">📃</span>
         </a>|
