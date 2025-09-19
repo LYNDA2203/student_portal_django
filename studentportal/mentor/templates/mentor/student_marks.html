@@ -1,0 +1,32 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    STUDENT_MARKS
+{% endblock  %}
+
+{% block content %}
+<h1>Marks for {{ student.full_name }}</h1>
+
+<table border="1">
+  <tr>
+    <th>Course</th>
+    <th>Marks Obtained</th>
+    <th>Max Marks</th>
+    <th>Percentage</th>
+    <th>Grade</th>
+  </tr>
+  {% for m in marks %}
+    <tr>
+      <td>{{ m.course.name }}</td>
+      <td>{{ m.marks_obtained }}</td>
+      <td>{{ m.max_marks }}</td>
+      <td>{{ m.percentage|floatformat:2 }}%</td>
+      <td>{{ m.grade }}</td>
+    </tr>
+  {% endfor %}
+</table>
+
+<p><strong>Total:</strong> {{ total_obtained }} / {{ total_max }}</p>
+<p><strong>Overall Percentage:</strong> {{ overall_percentage|floatformat:2 }}%</p>
+<p><strong>Overall Grade:</strong> {{ overall_grade }}</p>
+{% endblock %}

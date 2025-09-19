@@ -16,4 +16,16 @@
         <li>No modules available yet.</li>
     {% endfor %}
     </ul>
+    <br><br>
+    <h2>Enrolled Students & Marks</h2>
+    {% if enrollments %}
+      <ul>
+        {% for enrol in enrollments %}
+          <li>{{ enrol.student.user.username }} — Marks: {{ enrol.marks }}</li>
+        {% endfor %}
+      </ul>
+    {% else %}
+      <p>No students enrolled yet.</p>
+    {% endif %}
+    
 {% endblock  %}

@@ -1,21 +1,28 @@
 {% extends "layout.html" %}
 
+{% load static  %}
+
 {% block title %}
     COURSES AVAILABLE
 {% endblock  %}
 
 {% block content %}
-    <h1 style="text-align: center;">Choose Your Path</h1>
+    <h1 style="text-align: center;">Choose Your Path</h1><br><br>
     {% if user.is_authenticated %}
-        <ul>
+         <div class="track_cards">
             {% for track in tracks %}
-            <li><a href="{% url 'courses:track_detail' track.pk %}" class= "card" class= "course">{{ track.title }}</a></li>
+            <div class="track_card">
+            <a href="{% url 'courses:track_detail' track.pk %}">
+                {{ track.title }}
+            </a>
+            </div>
             {% empty %}
-            <li>No tracks available.</li>
+                No tracks available.
             {% endfor %}
-        </ul>
+         <div >
 
         {% else %}
             <p>Please log in to see the available tracks.</p>
     {% endif %}
 {% endblock %}
+
