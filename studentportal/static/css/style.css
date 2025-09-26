@@ -5,9 +5,8 @@
 }
 
 body {
-    font-family: Arial, sans-serif;
-    background-color: #f4f6f9;
-    
+    background-color: #bde1b0;
+    font-family: Arial, sans-serif;   
 }
 
 body.home-body {
@@ -18,10 +17,14 @@ body.home-body {
 }
 
 nav {
+    display: flex;              
+    align-items: center;        
+    gap: 1rem;                  
     padding: 1rem;
-    background-color: #44B78B;
+    padding: 0.5rem;
+    background-color: #4a865c;
     color: white;
-    font-size: 2.5rem;
+    font-size: 2rem;
 }
 
 
@@ -186,25 +189,27 @@ p.error {
 .track_cards {
   display: flex;
   flex-wrap: wrap;  
-  flex-direction: column;
+  flex-direction: row;
+  justify-content: center;
   align-items: center; 
   gap: 1rem;
-  margin: 1rem,0;   
+  margin: 1rem 0;   
 
 }
 
 .track_card {
-  width: 300px;                  
-  height: 150px;                 
-  display: flex;                 
-  justify-content: center;       
-  align-items: center;           
+  width: 180px;   
+  height: 70px;   
+  display: flex;
+  justify-content: center;
+  align-items: center;
   border: 2px solid #ddd;
   border-radius: 8px;
-  padding: 1rem;
-  box-sizing: border-box;         
-  text-align: center;           
-  transition: border-color 0.3s, box-shadow 0.3s;
+  padding: 0.5rem;   
+  font-size: 1rem;   
+  font-weight: bold;
+  background: white;
+  transition: 0.3s;
 }
 
 .track_card:hover {
@@ -221,4 +226,27 @@ p.error {
 .track_card a:hover {
   text-decoration: none;
   color: #007bff;
+}
+
+.high_score_section {
+  margin: 2rem auto;
+  padding: 1rem;
+  width: 60%;              
+  max-width: 600px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background: #f9f9f9;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  text-align: center;
+}
+
+.scroll_box {
+  max-height: 150px;       
+  overflow-y: auto;
+  margin-top: 1rem;
+  text-align: left;        
+  padding: 0.5rem;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  background: #fff;
 }

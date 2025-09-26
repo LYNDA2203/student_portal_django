@@ -15,7 +15,7 @@
     
 </head>
 <body background="static/image/students_image.png">
-   <nav class="navbar">
+   <nav class="nav">
     <!-- Always show Home -->
     <a href="{% url 'home' %}" class="nav-btn" style="text-decoration: none;">
         <span role="img" aria-label="Home" title="Home">🏠</span>
@@ -46,7 +46,7 @@
         {% elif request.resolver_match.url_name == "register" %}
             <!-- On register page: show Home + Login -->
              
-            <a href="{% url 'login' %}" class="nav-btn" style="text-decoration: none;">
+            <a href="{% url 'login' %}" method="post" class="nav-btn" style="text-decoration: none;">
                 <span role="img" aria-label="login" title="Login">🔑</span>
             </a>
         {% elif request.resolver_match.url_name == "home" %}

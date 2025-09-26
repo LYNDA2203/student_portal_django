@@ -7,8 +7,10 @@
 {% endblock  %}
 
 {% block content %}
-    <h1 style="text-align: center;">Choose Your Path</h1><br><br>
+    <h1 style="text-align: center; padding-top: 20px;">Choose Your Path</h1><br><br>
     {% if user.is_authenticated %}
+    <!-- Track section -->
+    <div class="track_section">
          <div class="track_cards">
             {% for track in tracks %}
             <div class="track_card">
@@ -19,8 +21,29 @@
             {% empty %}
                 No tracks available.
             {% endfor %}
+        </div>
          <div >
-
+        <br>
+        <div class="high_score_section"> 
+        <h2 style="text-align: center;">High Scoring Students (≥ 60%)</h2>
+            {% if high_scorers %}
+                <div class="scroll_box">
+                    <ul>
+                        {% for s in high_scorers %}
+                            <li>
+                                {{ s.full_name }} — Avg: {{ s.avg_percentage|floatformat:2 }}% 
+                                Tracks: 
+                                {% for m in s.marks.all %}
+                                    {{ m.course.track.title }}
+                                {% endfor %}
+                            </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            {% else %}
+                <p style="text-align: center;">No students have 60% or above yet.</p>
+            {% endif %}
+        </div>
         {% else %}
             <p>Please log in to see the available tracks.</p>
     {% endif %}

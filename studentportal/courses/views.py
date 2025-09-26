@@ -1,5 +1,7 @@
 from django.views import generic
-from .models import CourseTrack,Enrollment,CourseModule
+from django.db.models import Avg,F
+from .models import CourseTrack
+from mentor.models import Mark,Student
 from django.contrib.auth.mixins import LoginRequiredMixin
 
 # class TrackListView(LoginRequiredMixin,generic.ListView):
@@ -15,7 +17,16 @@ class TrackListView(LoginRequiredMixin, generic.ListView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['student_id'] = self.request.user.id
+
+        # students with overall >= 60%
+        high_scorers = Student.objects.annotate(
+            avg_percentage=Avg(F('marks__marks_obtained') * 100.0 / F('marks__max_marks'))
+        ).filter(avg_percentage__gte=60)
+
+        context['high_scorers'] = high_scorers
         return context
+    
+    
     
 class TrackDetailView(generic.DetailView):
     model = CourseTrack
@@ -24,6 +35,8 @@ class TrackDetailView(generic.DetailView):
     
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        track = self.get_object()  # valid here 
-        context['enrollments'] = Enrollment.objects.filter(track=track).select_related('student__user')
+        track = self.get_object()
+        courses_in_track = track.courses.all()
+        enrollments = Mark.objects.filter(course__in=courses_in_track).select_related("student","course")
+        context["marks"] = enrollments
         return context
