@@ -25,13 +25,23 @@
     <div class="nav-right">
 
         {% if user.is_authenticated %}
-        <a href="{% url 'courses:track_list' %}" class="nav-btn"  style="text-decoration: none;">
+            {% if user.userprofile.role == "student" %}
+                    <!-- Show student dashboard link -->
+                    <a href="{% url 'student:student_dashboard' %}" class="nav-btn" style="text-decoration: none;">
+                        <span role="img" aria-label="Student Dashboard" title="Student Dashboard">🎓</span>
+                    </a> |
+            {% elif user.userprofile.role == "mentor" %}
+                <!-- Show track list for staff -->
+                <a href="{% url 'courses:track_list' %}" class="nav-btn" style="text-decoration: none;">
+                    <span role="img" aria-label="Track List" title="Track List">📃</span>
+                </a> |
+                <a href="{% url 'mentor:mentor_dashboard' %}" class="nav-btn" style="text-decoration: none;">
+                    <span role="img" aria-label="Track List" title="Track List">👩‍🏫</span>
+                </a> |
+            {% endif %} 
+        <form action="{% url 'logout' %}" method="post" class="logout-form" style="display:inline;">
             {% csrf_token %}
-            <span role="img" aria-label="track-list" title="track-list">📃</span>
-        </a>|
-        <form action="{% url 'logout' %}" method="post" class="logout-form">
-            {% csrf_token %}
-            <button type="submit" class="nav-btn logout-btn">🚪</button>
+            <button type="submit" class="nav-btn logout-btn" style="background:none; border:none; cursor:pointer;">🚪</button>
         </form>
         {% else %}
 
@@ -40,24 +50,24 @@
             <!-- On login page: show Home + Register -->
                 
             <form action="{% url 'logout' %}" method="post" class="logout-form">
-                {% csrf_token %}
-                <button type="submit" class="nav-btn logout-btn">🚪</button>
+                    {% csrf_token %}
+                    <button type="submit" class="nav-btn logout-btn">🚪</button>
             </form>
         {% elif request.resolver_match.url_name == "register" %}
             <!-- On register page: show Home + Login -->
              
-            <a href="{% url 'login' %}" method="post" class="nav-btn" style="text-decoration: none;">
-                <span role="img" aria-label="login" title="Login">🔑</span>
-            </a>
+                <a href="{% url 'login' %}" method="post" class="nav-btn" style="text-decoration: none;">
+                    <span role="img" aria-label="login" title="Login">🔑</span>
+                </a>
         {% elif request.resolver_match.url_name == "home" %}
-            <!-- On home page: show Register + Login -->
-           <form action="{% url 'logout' %}" method="post" class="logout-form">
-            {% csrf_token %}
-            <button type="submit" class="nav-btn logout-btn">🚪</button>
-        </form>
+                <!-- On home page: show Register + Login -->
+                <form action="{% url 'logout' %}" method="post" class="logout-form">
+                    {% csrf_token %}
+                    <button type="submit" class="nav-btn logout-btn">🚪</button>
+                </form>
+            {% endif %}
         {% endif %}
-    {% endif %}
-</nav>
+    </nav>
 
     {% block content %}
 

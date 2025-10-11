@@ -1,0 +1,40 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    {{ student.full_name }} - {{ course.name }} Marks
+{% endblock %}
+
+{% block content %}
+<header>
+        <h1>Welcome, {{ request.student.username }} 🎓</h1>
+        <p>Course Performance</p>
+    </header>
+
+    <div class="content">
+        <h2>My Courses & Grades</h2>
+
+        <table>
+            <tr>
+                <th>Course</th>
+                <th>Marks</th>
+                <th>Grade</th>
+            </tr>
+
+            {% for course in courses %}
+            <tr>
+                <td>{{ course.name }}</td>
+                <td>{{ course.marks }}</td>
+                <td>{{ course.grade }}</td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="3">No courses found.</td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+
+    <footer>
+        <p>&copy; 2025 Student Portal</p>
+    </footer>
+{% endblock %}

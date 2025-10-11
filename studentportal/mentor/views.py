@@ -39,6 +39,7 @@ def student_marks_view(request, student_id):
         "overall_grade": overall_grade,  
     }
     return render(request, "mentor/student_marks.html", context)
+
 @login_required
 def student_course_marks_view(request, student_id, course_id):
     student = get_object_or_404(Student, id=student_id)
@@ -51,3 +52,9 @@ def student_course_marks_view(request, student_id, course_id):
         'mark': mark,
     }
     return render(request, 'mentor/student_course_marks.html', context)
+
+@login_required
+def mentor_dashboard(request):
+    mentor = request.user  # logged-in mentor
+    students = mentor.assigned_students.all()  # students assigned to this mentor
+    return render(request, "mentor/mentor_dashboard.html", {"students": students})
