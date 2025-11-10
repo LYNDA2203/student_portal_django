@@ -1,12 +1,18 @@
 from django import forms
 from django.contrib.auth.models import User
+from django.core.validators import RegexValidator
 from mentor.models import UserProfile
 
 class RegisterForm(forms.ModelForm):
-    password1 = forms.CharField(widget=forms.PasswordInput, label="Password")
-    password2 = forms.CharField(widget=forms.PasswordInput, label="Confirm Password")
+    username = forms.CharField(max_length=150,label="Username",validators=[RegexValidator(r'^[\w.@+\-\s]+$', "Enter a valid username.")],)
+    email = forms.EmailField(required=True, label="Email Address")
+    password1 = forms.CharField(widget=forms.PasswordInput, label="Password",help_text="Enter a strong password.")
+    password2 = forms.CharField(widget=forms.PasswordInput, label="Confirm Password",help_text="Enter a strong password.")
     role = forms.ChoiceField(choices=UserProfile.ROLE_CHOICES, label="Role")
-
+    mentor_username = forms.CharField(required=False, help_text="(Optional) Enter your mentor’s username")
+    
+    
+    
     class Meta:
         model = User
         fields = ("username", "email")
@@ -25,7 +31,8 @@ class RegisterForm(forms.ModelForm):
             user.save()
             # Save role in UserProfile
             role = self.cleaned_data["role"]
-            user.userprofile.role = role
-            user.userprofile.save()
+            profile, created = UserProfile.objects.get_or_create(user=user)
+            profile.role = role
+            profile.save()
         return user
 

@@ -25,25 +25,37 @@
          <div >
         <br>
         <div class="high_score_section"> 
-        <h2 style="text-align: center;">High Scoring Students (≥ 60%)</h2>
-            {% if high_scorers %}
-                <div class="scroll_box">
-                    <ul>
-                        {% for s in high_scorers %}
-                            <li>
-                                {{ s.full_name }} — Avg: {{ s.avg_percentage|floatformat:2 }}% 
-                                Tracks: 
+    <h2 class="text-center mb-3">High Scoring Students (≥ 60%)</h2>
+
+    {% if high_scorers %}
+        <div class="scroll_box">
+            <table class="table table-bordered table-striped text-center align-middle">
+                <thead class="table-light">
+                    <tr>
+                        <th>Student Name</th>
+                        <th>Average Percentage</th>
+                        <th>Tracks</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for s in high_scorers %}
+                        <tr>
+                            <td>{{ s.full_name }}</td>
+                            <td>{{ s.avg_percentage|floatformat:2 }}%</td>
+                            <td>
                                 {% for m in s.marks.all %}
-                                    {{ m.course.track.title }}
+                                    {{ m.course.track.title }}{% if not forloop.last %}, {% endif %}
                                 {% endfor %}
-                            </li>
-                        {% endfor %}
-                    </ul>
-                </div>
-            {% else %}
-                <p style="text-align: center;">No students have 60% or above yet.</p>
-            {% endif %}
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
         </div>
+    {% else %}
+        <p class="text-center">No students have 60% or above yet.</p>
+    {% endif %}
+</div>
         {% else %}
             <p>Please log in to see the available tracks.</p>
     {% endif %}

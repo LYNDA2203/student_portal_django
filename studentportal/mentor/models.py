@@ -3,12 +3,21 @@ from django.conf import settings
 from django.core.exceptions import ValidationError
 from courses.models import Course,CourseTrack
 from django.contrib.auth.models import User
+from django.db.models.signals import post_save
+from django.dispatch import receiver
+
+class Mentor(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    full_name = models.CharField(max_length=100)
+
+    def __str__(self):
+        return self.full_name
 
 class Student(models.Model):
     user = models.OneToOneField(User,on_delete=models.CASCADE,related_name='student_profile')
     full_name = models.CharField(max_length=200)
-
     mentor = models.ForeignKey(User,on_delete=models.SET_NULL,null=True,blank=True,related_name='assigned_students',limit_choices_to={'userprofile__role': 'mentor'})
+    
     class Meta:
         verbose_name = "Student"
         verbose_name_plural = "Students"
@@ -16,7 +25,16 @@ class Student(models.Model):
     def __str__(self):
         return self.full_name
 
-
+@receiver(post_save, sender=User)
+def create_or_update_student_profile(sender, instance, created, **kwargs):
+    try:
+        user_profile = instance.userprofile
+    except UserProfile.DoesNotExist:
+        return  
+    
+    if user_profile.role == 'student':
+        Student.objects.update_or_create( user=instance,defaults={'full_name': instance.get_full_name() or instance.username})
+        
 class UserProfile(models.Model):
     ROLE_CHOICES = (
         ('student', 'Student'),

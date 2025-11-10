@@ -3,10 +3,16 @@
     padding: 0;
     box-sizing: border-box;
 }
-
+html,body{
+    height: 100%;
+}
 body {
+    
     background-color: #bde1b0;
-    font-family: Arial, sans-serif;   
+    font-family: Arial, sans-serif; 
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;  
 }
 
 body.home-body {
@@ -83,10 +89,10 @@ p.error {
 /* Centered box */
 .container {
     width: 400px;
-    max-width: 900px;
+    max-width: 1000px;
     margin: 50px auto;
     padding: 30px;
-    background: rgba(255, 255, 255, 0.9);  /* white box with transparency */
+    background: rgba(255, 255, 255, 0.9);
     text-align: center;
     border-radius: 12px;
     box-shadow: 0px 4px 15px rgba(0,0,0,0.3);
@@ -126,7 +132,24 @@ p.error {
 .container a.login:hover {
     background: #e76f51;
 }
+.mentor-container {
+    width: 90%;
+    max-width: 1100px;
+    min-height: 550px;
+    margin: 60px auto;
+    padding: 40px;
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 15px;
+    box-shadow: 0 6px 25px rgba(0, 0, 0, 0.2);
+}
 
+.card {
+    padding: 30px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+    width: 100%;
+}
 .navbar {
     background-color: #44B78B;   /* green bar */
     padding: 10px;
@@ -232,8 +255,8 @@ p.error {
 .high_score_section {
   margin: 2rem auto;
   padding: 1rem;
-  width: 60%;              
-  max-width: 600px;
+  width: 80%;              
+  max-width: 700px;
   border: 1px solid #ddd;
   border-radius: 8px;
   background: #f9f9f9;
@@ -290,4 +313,146 @@ h2 {
     color: #2f4858;
     padding: 10px;
     border-radius: 6px;
+}
+
+
+.track-detail {
+  width: 85%;
+  max-width: 900px;
+  margin: 40px auto;
+  background: #ffffff;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+}
+
+.track-detail h1 {
+  color: #2f4858;
+  text-align: center;
+  margin-bottom: 25px;
+  font-size: 2rem;
+  border-bottom: 3px solid #4a865c;
+  display: inline-block;
+  padding-bottom: 8px;
+}
+
+.track-detail h2 {
+  color: #4a865c;
+  margin-top: 30px;
+  font-size: 1.4rem;
+  border-left: 5px solid #4a865c;
+  padding-left: 10px;
+  margin-bottom: 15px;
+}
+
+.track-detail ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.track-detail ul li {
+  background: #f7fff6;
+  margin-bottom: 15px;
+  padding: 15px;
+  border-radius: 8px;
+  border-left: 5px solid #4a865c;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  line-height: 1.5;
+  transition: 0.3s;
+}
+
+.track-detail ul li:hover {
+  background: #e7f4e4;
+  transform: translateY(-2px);
+}
+
+
+.track-detail ul li br + br {
+  display: none;
+}
+
+
+.track-detail ul li a {
+  display: inline-block;
+  margin-top: 5px;
+  color: #0077b6;
+  font-weight: bold;
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+.track-detail ul li a:hover {
+  color: #005f86;
+  text-decoration: underline;
+}
+
+.marks-container {
+  width: 85%;
+  max-width: 900px;
+  margin: 40px auto;
+  background: #ffffff;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+  font-family: "Segoe UI", Arial, sans-serif;
+}
+
+.marks-container h1 {
+  color: #2f4858;
+  text-align: center;
+  margin-bottom: 25px;
+  font-size: 2rem;
+  border-bottom: 3px solid #4a865c;
+  display: inline-block;
+  padding-bottom: 8px;
+}
+
+.marks-container table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+.marks-container th,
+.marks-container td {
+  padding: 12px 15px;
+  text-align: center;
+  border-bottom: 1px solid #ddd;
+}
+
+.marks-container th {
+  background-color: #4a865c;
+  color: white;
+  font-weight: bold;
+}
+
+.marks-container tr:nth-child(even) {
+  background-color: #f7fff6;
+}
+
+.marks-container tr:hover {
+  background-color: #e7f4e4;
+  transition: 0.2s;
+}
+
+.marks-container p {
+  font-size: 1rem;
+  margin-top: 15px;
+  text-align: center;
+  color: #333;
+}
+
+.marks-container a {
+  display: inline-block;
+  margin-top: 20px;
+  color: #0077b6;
+  font-weight: bold;
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+.marks-container a:hover {
+  color: #005f86;
+  text-decoration: underline;
 }

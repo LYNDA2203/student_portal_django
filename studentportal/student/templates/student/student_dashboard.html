@@ -1,12 +1,12 @@
 {% extends "layout.html" %}
 
 {% block title %}
-    {{ student.full_name }} - {{ course.name }} Marks
+    {{ student.full_name }} - {{ course.track.title }} Marks
 {% endblock %}
 
 {% block content %}
 <header>
-        <h1>Welcome, {{ request.student.username }} 🎓</h1>
+        <h1>Welcome, {{ student.full_name }} 🎓</h1>
         <p>Course Performance</p>
     </header>
 
@@ -20,11 +20,11 @@
                 <th>Grade</th>
             </tr>
 
-            {% for course in courses %}
+            {% for mark in marks %}
             <tr>
-                <td>{{ course.name }}</td>
-                <td>{{ course.marks }}</td>
-                <td>{{ course.grade }}</td>
+                <td>{{ mark.course.name }}</td>
+                <td>{{ mark.marks_obtained }}/{{ mark.max_marks }}</td>
+                <td>{{ mark.grade }}</td>
             </tr>
             {% empty %}
             <tr>

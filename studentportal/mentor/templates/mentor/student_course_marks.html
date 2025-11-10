@@ -3,23 +3,24 @@
 {% load static %}
 
 {% block title %}
-    {{ student.full_name }} - {{ course.name }} Marks
+    {{ student.full_name }} - {{ course.track.title }} Marks
 {% endblock %}
 
 {% block content %}
-<h1>{{ student.full_name }} - {{ course.name }}</h1>
+<div class = "marks-container">
+<h1>{{ student.full_name }} - {{ course.track.title}}</h1>
 
 {% if mark %}
   <table border="1">
     <tr>
-      <th>Course</th>
+      <th>Student Name</th>
       <th>Marks Obtained</th>
       <th>Max Marks</th>
       <th>Percentage</th>
       <th>Grade</th>
     </tr>
     <tr>
-      <td>{{ course.name }}</td>
+      <td>{{ student.full_name }}</td>
       <td>{{ mark.marks_obtained }}</td>
       <td>{{ mark.max_marks }}</td>
       <td>{{ mark.percentage|floatformat:2 }}%</td>
@@ -31,4 +32,5 @@
 {% endif %}
 
 <p><a href="{% url 'mentor:student_marks' student.id %}">🔙 Back to All Marks</a></p>
+</div>
 {% endblock %}

@@ -7,11 +7,12 @@
 {% endblock  %}
 
 {% block content %}
+<div class = "marks-container">
 <h1>Marks for {{ student.full_name }}</h1>
 
 <table border="1">
   <tr>
-    <th>Course</th>
+    <th>Student Name</th>
     <th>Marks Obtained</th>
     <th>Max Marks</th>
     <th>Percentage</th>
@@ -19,7 +20,7 @@
   </tr>
   {% for m in marks %}
     <tr>
-      <td>{{ m.course.name }}</td>
+      <td>{{ m.student.full_name}}</td>
       <td>{{ m.marks_obtained }}</td>
       <td>{{ m.max_marks }}</td>
       <td>{{ m.percentage|floatformat:2 }}%</td>
@@ -31,4 +32,5 @@
 <p><strong>Total:</strong> {{ total_obtained }} / {{ total_max }}</p>
 <p><strong>Overall Percentage:</strong> {{ overall_percentage|floatformat:2 }}%</p>
 <p><strong>Overall Grade:</strong> {{ overall_grade }}</p>
+</div>
 {% endblock %}
