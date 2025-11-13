@@ -5,6 +5,7 @@ from courses.models import Course,CourseTrack
 from django.contrib.auth.models import User
 from django.db.models.signals import post_save
 from django.dispatch import receiver
+from django.db.models.functions import Lower
 
 class Mentor(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
@@ -15,10 +16,12 @@ class Mentor(models.Model):
 
 class Student(models.Model):
     user = models.OneToOneField(User,on_delete=models.CASCADE,related_name='student_profile')
-    full_name = models.CharField(max_length=200)
-    mentor = models.ForeignKey(User,on_delete=models.SET_NULL,null=True,blank=True,related_name='assigned_students',limit_choices_to={'userprofile__role': 'mentor'})
+    full_name = models.CharField(max_length=200,unique=True)
+    mentor = models.ForeignKey('Mentor',on_delete=models.SET_NULL,null=True,blank=True,related_name='students')
     
     class Meta:
+        constraints = [models.UniqueConstraint(Lower('full_name'),name='unique_full_name_case_insensitive')]
+        
         verbose_name = "Student"
         verbose_name_plural = "Students"
 
@@ -44,6 +47,12 @@ class UserProfile(models.Model):
     role = models.CharField(max_length=10, choices=ROLE_CHOICES)
 
     def __str__(self):
+        if self.role == 'mentor':
+            mentor = getattr(self.user, 'mentor', None)
+            
+            if mentor:
+                return mentor.full_name  
+            return f"{self.user.username} (Mentor without profile)"
         return f"{self.user.username} - {self.role}"
 
 class Mark(models.Model):

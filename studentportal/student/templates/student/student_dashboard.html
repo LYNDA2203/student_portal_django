@@ -1,40 +1,41 @@
 {% extends "layout.html" %}
 
+{% load static %}
+
 {% block title %}
     {{ student.full_name }} - {{ course.track.title }} Marks
 {% endblock %}
 
 {% block content %}
-<header>
+<div class="student-dashboard">
+    <header>
         <h1>Welcome, {{ student.full_name }} 🎓</h1>
         <p>Course Performance</p>
     </header>
 
-    <div class="content">
-        <h2>My Courses & Grades</h2>
+    <h2>My Courses & Grades</h2>
 
-        <table>
-            <tr>
-                <th>Course</th>
-                <th>Marks</th>
-                <th>Grade</th>
-            </tr>
-
-            {% for mark in marks %}
-            <tr>
-                <td>{{ mark.course.name }}</td>
-                <td>{{ mark.marks_obtained }}/{{ mark.max_marks }}</td>
-                <td>{{ mark.grade }}</td>
-            </tr>
-            {% empty %}
-            <tr>
-                <td colspan="3">No courses found.</td>
-            </tr>
-            {% endfor %}
-        </table>
-    </div>
+    <table>
+        <tr>
+            <th>Course</th>
+            <th>Marks</th>
+            <th>Grade</th>
+        </tr>
+        {% for mark in marks %}
+        <tr>
+            <td>{{ mark.course.track.title }}</td>
+            <td>{{ mark.marks_obtained }}/{{ mark.max_marks }}</td>
+            <td>{{ mark.grade }}</td>
+        </tr>
+        {% empty %}
+        <tr>
+            <td colspan="3">No courses found.</td>
+        </tr>
+        {% endfor %}
+    </table>
 
     <footer>
         <p>&copy; 2025 Student Portal</p>
     </footer>
+</div>
 {% endblock %}

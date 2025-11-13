@@ -30,6 +30,9 @@
                     <a href="{% url 'student:student_dashboard' %}" class="nav-btn" style="text-decoration: none;">
                         <span role="img" aria-label="Student Dashboard" title="Student Dashboard">🎓</span>
                     </a> |
+                    <a href="{% url 'student:assign_mentor' %}" class="nav-btn" style="text-decoration: none;">
+                        <span role="img" aria-label="assign_mentor" title="assign_mentor">👩‍🏫🎓</span>
+                    </a>|
             {% elif user.userprofile.role == "mentor" %}
                 <!-- Show track list for staff -->
                 <a href="{% url 'courses:track_list' %}" class="nav-btn" style="text-decoration: none;">

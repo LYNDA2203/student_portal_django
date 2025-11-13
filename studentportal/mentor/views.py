@@ -2,7 +2,7 @@
 
 from django.shortcuts import render, get_object_or_404
 from django.http import Http404
-from .models import Student, Mark,Course
+from .models import Student, Mark,Course,Mentor
 from django.contrib.auth.decorators import login_required
 
 @login_required
@@ -54,20 +54,28 @@ def student_course_marks_view(request, student_id, course_id):
 
 @login_required
 def mentor_dashboard(request):
+    # ✅ Only mentors can access
     if not hasattr(request.user, 'userprofile') or request.user.userprofile.role != 'mentor':
         return render(request, 'mentor/not_authorized.html')
 
-    mentor = request.user
-    students = mentor.assigned_students.prefetch_related('marks', 'user')
+    # ✅ Get Mentor instance linked to the logged-in user
+    try:
+        mentor_instance = Mentor.objects.get(user=request.user)
+    except Mentor.DoesNotExist:
+        return render(request, 'mentor/not_authorized.html', {"error": "Mentor profile not found."})
 
+    # ✅ Access students linked via the Mentor model
+    students = mentor_instance.students.prefetch_related('marks', 'user')
+
+    # ✅ Compute performance details for each student
     student_data = []
     for student in students:
         marks_list = student.marks.all()
-        if marks_list:
+        if marks_list.exists():
             total = sum(m.marks_obtained for m in marks_list)
             max_total = sum(m.max_marks for m in marks_list)
             percentage = (total / max_total) * 100
-            # Simple grading logic
+
             if percentage >= 90:
                 grade = "A"
             elif percentage >= 75:
@@ -86,4 +94,7 @@ def mentor_dashboard(request):
             "grade": grade
         })
 
-    return render(request, "mentor/mentor_dashboard.html", {"student_data": student_data})
+    return render(request, "mentor/mentor_dashboard.html", {
+        "mentor": mentor_instance,
+        "student_data": student_data
+    })
