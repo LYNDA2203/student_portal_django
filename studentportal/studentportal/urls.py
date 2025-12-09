@@ -27,4 +27,5 @@ urlpatterns = [
     path('courses/',include('courses.urls',namespace='courses')),
     path('mentor/', include('mentor.urls',namespace='mentor')),
     path("student/", include("student.urls",namespace="student")),
+    path('api/',include('api.urls',namespace='api')),
 ]
