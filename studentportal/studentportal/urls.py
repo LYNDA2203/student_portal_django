@@ -28,4 +28,5 @@ urlpatterns = [
     path('mentor/', include('mentor.urls',namespace='mentor')),
     path("student/", include("student.urls",namespace="student")),
     path('api/',include('api.urls',namespace='api')),
+    path('api-auth/',include('rest_framework.urls')),
 ]
