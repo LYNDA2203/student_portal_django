@@ -29,8 +29,7 @@ class MarkSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Mark
-        fields = ["id", "student_name", "course_name", "marks_obtained", "max_marks"]
-
+        fields = [ "id", "student", "student_name", "course", "course_name", "marks_obtained","max_marks"]
     def get_course_name(self, obj):
         return obj.course.track.title    # return the track title directly
 
